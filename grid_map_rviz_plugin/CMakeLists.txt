@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.5)
 project(grid_map_rviz_plugin)
 
 find_package(ament_cmake REQUIRED)
+# Provides ament_auto_depend_on_packages(), which replaces
+# ament_target_dependencies(), removed in the ament_cmake ROS 2 Lyrical ships
+find_package(ament_cmake_auto REQUIRED)
 find_package(grid_map_cmake_helpers REQUIRED)
 find_package(grid_map_msgs REQUIRED)
 find_package(grid_map_ros REQUIRED)
@@ -54,8 +57,9 @@ add_library(${PROJECT_NAME} SHARED
   ${MOC_FILES}
 )
 
-ament_target_dependencies(${PROJECT_NAME} SYSTEM
-  ${dependencies}
+ament_auto_depend_on_packages(${PROJECT_NAME} SYSTEM
+  PACKAGES
+    ${dependencies}
 )
 
 # Causes the visibility macros to use dllexport rather than dllimport,

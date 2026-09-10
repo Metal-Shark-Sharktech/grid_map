@@ -3,6 +3,9 @@ project(grid_map_loader)
 
 ## Find ament macros and libraries
 find_package(ament_cmake REQUIRED)
+# Provides ament_auto_depend_on_packages(), which replaces
+# ament_target_dependencies(), removed in the ament_cmake ROS 2 Lyrical ships
+find_package(ament_cmake_auto REQUIRED)
 find_package(grid_map_cmake_helpers REQUIRED)
 find_package(grid_map_msgs REQUIRED)
 find_package(grid_map_ros REQUIRED)
@@ -36,14 +39,16 @@ add_library(${library_name} SHARED
 )
 
 ## Specify libraries to link a library or executable target against
-ament_target_dependencies(${PROJECT_NAME} SYSTEM
-  ${dependencies}
+ament_auto_depend_on_packages(${PROJECT_NAME} SYSTEM
+  PACKAGES
+    ${dependencies}
 )
 
 target_link_libraries(${PROJECT_NAME} ${library_name})
 
-ament_target_dependencies(${library_name} SYSTEM
-  ${dependencies}
+ament_auto_depend_on_packages(${library_name} SYSTEM
+  PACKAGES
+    ${dependencies}
 )
 
 #############

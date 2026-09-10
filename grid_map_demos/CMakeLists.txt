@@ -3,6 +3,9 @@ project(grid_map_demos)
 
 ## Find ament_cmake macros and libraries
 find_package(ament_cmake REQUIRED)
+# Provides ament_auto_depend_on_packages(), which replaces
+# ament_target_dependencies(), removed in the ament_cmake ROS 2 Lyrical ships
+find_package(ament_cmake_auto REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(filters REQUIRED)
 find_package(grid_map_cmake_helpers REQUIRED)
@@ -112,76 +115,77 @@ add_executable(
 )
 
 ## Specify libraries to link a library or executable target against
-ament_target_dependencies(
-  simple_demo SYSTEM
-  ${dependencies}
+ament_auto_depend_on_packages(simple_demo SYSTEM
+  PACKAGES
+    ${dependencies}
 )
 
-ament_target_dependencies(
-  tutorial_demo SYSTEM
-  ${dependencies}
+ament_auto_depend_on_packages(tutorial_demo SYSTEM
+  PACKAGES
+    ${dependencies}
 )
 
-ament_target_dependencies(
-  iterators_demo SYSTEM
-  ${dependencies}
+ament_auto_depend_on_packages(iterators_demo SYSTEM
+  PACKAGES
+    ${dependencies}
 )
 
-ament_target_dependencies(image_to_gridmap_demo SYSTEM
-  ${dependencies}
+ament_auto_depend_on_packages(image_to_gridmap_demo SYSTEM
+  PACKAGES
+    ${dependencies}
 )
 
-ament_target_dependencies(
-  octomap_to_gridmap_demo SYSTEM
-  ${dependencies}
-  grid_map_octomap
-  octomap_msgs
+ament_auto_depend_on_packages(octomap_to_gridmap_demo SYSTEM
+  PACKAGES
+    ${dependencies}
+    grid_map_octomap
+    octomap_msgs
 )
 
-ament_target_dependencies(
-  move_demo SYSTEM
-  ${dependencies}
+ament_auto_depend_on_packages(move_demo SYSTEM
+  PACKAGES
+    ${dependencies}
 )
 
-ament_target_dependencies(
-  iterator_benchmark SYSTEM
-  grid_map_core
+ament_auto_depend_on_packages(iterator_benchmark SYSTEM
+  PACKAGES
+    grid_map_core
 )
 
-ament_target_dependencies(
-  opencv_demo SYSTEM
-  ${dependencies}
-  grid_map_cv
+ament_auto_depend_on_packages(opencv_demo SYSTEM
+  PACKAGES
+    ${dependencies}
+    grid_map_cv
 )
 
-ament_target_dependencies(
-  resolution_change_demo SYSTEM
-  ${dependencies}
+ament_auto_depend_on_packages(resolution_change_demo SYSTEM
+  PACKAGES
+    ${dependencies}
 )
 
 target_link_libraries(filters_demo filters_demo_lib)
 
-ament_target_dependencies(
-  filters_demo_lib SYSTEM
-  ${dependencies}
-  filters
+ament_auto_depend_on_packages(filters_demo_lib SYSTEM
+  PACKAGES
+    ${dependencies}
+    filters
 )
 
-ament_target_dependencies(
-  filters_demo SYSTEM
-  ${dependencies}
-  filters
+ament_auto_depend_on_packages(filters_demo SYSTEM
+  PACKAGES
+    ${dependencies}
+    filters
 )
 
-ament_target_dependencies(
-  normal_filter_comparison_demo SYSTEM
-  ${dependencies}
-  filters
+ament_auto_depend_on_packages(normal_filter_comparison_demo SYSTEM
+  PACKAGES
+    ${dependencies}
+    filters
 )
 
-ament_target_dependencies(
-  interpolation_demo SYSTEM
-  ${dependencies}
+ament_auto_depend_on_packages(interpolation_demo SYSTEM
+  PACKAGES
+    ${dependencies}
 )
 
 set(targets_list

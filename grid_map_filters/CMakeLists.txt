@@ -3,6 +3,9 @@ project(grid_map_filters)
 
 ## Find ament_cmake macros and libraries
 find_package(ament_cmake REQUIRED)
+# Provides ament_auto_depend_on_packages(), which replaces
+# ament_target_dependencies(), removed in the ament_cmake ROS 2 Lyrical ships
+find_package(ament_cmake_auto REQUIRED)
 find_package(filters REQUIRED)
 find_package(grid_map_cmake_helpers REQUIRED)
 find_package(grid_map_core REQUIRED)
@@ -83,8 +86,9 @@ add_library(set_basic_layers_filter SHARED src/SetBasicLayersFilter.cpp)
 add_library(buffer_normalizer_filter SHARED src/BufferNormalizerFilter.cpp)
 
 foreach(lib_name ${filter_libs})
-  ament_target_dependencies(${lib_name} SYSTEM
-    ${dependencies}
+  ament_auto_depend_on_packages(${lib_name} SYSTEM
+    PACKAGES
+      ${dependencies}
   )
 
   if(CMAKE_CXX_COMPILER_ID MATCHES "GNU")

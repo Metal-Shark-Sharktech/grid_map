@@ -4,6 +4,9 @@ project(grid_map_sdf)
 
 ## Find ament_cmake macros and libraries
 find_package(ament_cmake REQUIRED)
+# Provides ament_auto_depend_on_packages(), which replaces
+# ament_target_dependencies(), removed in the ament_cmake ROS 2 Lyrical ships
+find_package(ament_cmake_auto REQUIRED)
 find_package(grid_map_cmake_helpers REQUIRED)
 find_package(grid_map_core REQUIRED)
 find_package(PCL REQUIRED COMPONENTS common)
@@ -43,8 +46,9 @@ add_library(${PROJECT_NAME}
   src/SignedDistanceField.cpp
 )
 
-ament_target_dependencies(${PROJECT_NAME} SYSTEM
-  ${dependencies}
+ament_auto_depend_on_packages(${PROJECT_NAME} SYSTEM
+  PACKAGES
+    ${dependencies}
 )
 
 #############
