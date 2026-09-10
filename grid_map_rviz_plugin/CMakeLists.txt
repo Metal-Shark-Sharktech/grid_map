@@ -8,7 +8,7 @@ find_package(ament_cmake_auto REQUIRED)
 find_package(grid_map_cmake_helpers REQUIRED)
 find_package(grid_map_msgs REQUIRED)
 find_package(grid_map_ros REQUIRED)
-find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
 find_package(rclcpp REQUIRED)
 find_package(rviz_common REQUIRED)
 find_package(rviz_ogre_vendor REQUIRED)
@@ -16,7 +16,7 @@ find_package(rviz_rendering REQUIRED COMPONENTS Core Widgets)
 
 grid_map_package()
 
-## Qt5 boilerplate options from http://doc.qt.io/qt-5/cmake-manual.html
+## Qt6 boilerplate options
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON) # This setting causes Qt's "MOC" generation to happen automatically.
 
@@ -37,7 +37,7 @@ set(INCLUDE_FILES_QT
   include/grid_map_rviz_plugin/GridMapDisplay.hpp
 )
 
-qt5_wrap_cpp(MOC_FILES ${INCLUDE_FILES_QT})
+qt6_wrap_cpp(MOC_FILES ${INCLUDE_FILES_QT})
 
 ## Avoid Qt signals and slots defining "emit", "slots", etc.
 add_definitions(-DQT_NO_KEYWORDS)
@@ -137,7 +137,7 @@ endif()
 ament_export_include_directories(include)
 ament_export_targets(${PROJECT_NAME} HAS_LIBRARY_TARGET)
 ament_export_dependencies(
-  Qt5
+  Qt6
   rviz_common
   geometry_msgs
   nav_msgs
