@@ -14,8 +14,10 @@
 
 #include "Utils.hpp"
 
-namespace grid_map {
-namespace signed_distance_field {
+namespace grid_map
+{
+namespace signed_distance_field
+{
 
 /**
  * Computes the signed distance field at a specified height for a given elevation map.
@@ -27,7 +29,9 @@ namespace signed_distance_field {
  * @param maxHeight : the maximum height contained in elevationMap
  * @return The signed distance field at the query height.
  */
-Matrix signedDistanceAtHeight(const Matrix& elevationMap, float height, float resolution, float minHeight, float maxHeight);
+Matrix signedDistanceAtHeight(
+  const Matrix & elevationMap, float height, float resolution,
+  float minHeight, float maxHeight);
 
 /**
  * Same as above, but returns the sdf in transposed form.
@@ -42,8 +46,10 @@ Matrix signedDistanceAtHeight(const Matrix& elevationMap, float height, float re
  * @param minHeight : the lowest height contained in elevationMap
  * @param maxHeight : the maximum height contained in elevationMap
  */
-void signedDistanceAtHeightTranspose(const Matrix& elevationMap, Matrix& sdfTranspose, Matrix& tmp, Matrix& tmpTranspose, float height,
-                                     float resolution, float minHeight, float maxHeight);
+void signedDistanceAtHeightTranspose(
+  const Matrix & elevationMap, Matrix & sdfTranspose, Matrix & tmp, Matrix & tmpTranspose,
+  float height,
+  float resolution, float minHeight, float maxHeight);
 
 /**
  * Gets the 2D signed distance from an occupancy grid.
@@ -53,7 +59,9 @@ void signedDistanceAtHeightTranspose(const Matrix& elevationMap, Matrix& sdfTran
  * @param resolution : resolution of the grid.
  * @return signed distance for each point in the grid to the occupancy border.
  */
-Matrix signedDistanceFromOccupancy(const Eigen::Matrix<bool, -1, -1>& occupancyGrid, float resolution);
+Matrix signedDistanceFromOccupancy(
+  const Eigen::Matrix<bool, -1, -1> & occupancyGrid,
+  float resolution);
 
 }  // namespace signed_distance_field
 }  // namespace grid_map

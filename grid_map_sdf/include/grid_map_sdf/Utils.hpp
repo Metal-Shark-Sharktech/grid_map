@@ -8,8 +8,12 @@
 
 #pragma once
 
-namespace grid_map {
-namespace signed_distance_field {
+#include <limits>
+
+namespace grid_map
+{
+namespace signed_distance_field
+{
 
 // Check existence of inf
 static_assert(std::numeric_limits<float>::has_infinity, "float does not support infinity");
